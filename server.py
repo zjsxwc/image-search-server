@@ -5,7 +5,7 @@ from feature_extractor import FeatureExtractor
 import glob
 import pickle
 from datetime import datetime
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify, make_response
 
 
 
@@ -48,9 +48,10 @@ def index():
         ids = np.argsort(dists)[:30] # Top 30 results
         scores = [(dists[id], img_paths[id]) for id in ids]
 
-        return render_template('index.html',
-                               query_path=uploaded_img_path,
-                               scores=scores)
+        if request.is_xhr:
+            return make_response(jsonify(scores), 200)
+
+        return render_template('index.html', query_path=uploaded_img_path, scores=scores)
     else:
         return render_template('index.html')
 
