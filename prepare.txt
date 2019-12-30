@@ -1,0 +1,18 @@
+sudo apt install python3
+sudo apt install python3-pip
+git clone https://github.com/matsui528/sis.git
+cd sis
+# vim requirements.txt
+#     tensorflow==2.0.0b1
+pip3 install -r requirements.txt
+# Put your image files (*.jpg) on ./static/img
+
+# 迅雷下载 https://github.com/fchollet/deep-learning-models/releases/download/v0.1/vgg16_weights_tf_dim_ordering_tf_kernels.h5
+# 放到目录  ~/.keras/models/ 下面
+
+python3 offline.py
+# Then fc6 features are extracted and saved on static/feature
+# Note that it takes time for the first time because Keras downloads the VGG weights.
+
+python3 server.py
+# Now you can do the search via localhost:5000
