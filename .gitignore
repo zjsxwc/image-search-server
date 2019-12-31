@@ -1,6 +1,7 @@
 static/*
 !static/feature
 !static/askans
+!static/processing-image
 !static/img
 !static/uploaded
 !.gitkeep
@@ -96,5 +97,6 @@ ENV/
 .ropeproject
 static/feature/*.pkl
 static/img/*.jpg
+static/processing-image/*.jpg
 static/askans/*.jpg
 static/askans/*.json
