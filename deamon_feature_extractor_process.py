@@ -25,9 +25,12 @@ while True:
 	    print(img_path)
 	    img = Image.open(img_path)  # PIL image
 	    feature = fe.extract(img)
+	    feature_path_tmp = 'static/feature/' + os.path.splitext(os.path.basename(img_path))[0] + '.tmp'
 	    feature_path = 'static/feature/' + os.path.splitext(os.path.basename(img_path))[0] + '.pkl'
-	    pickle.dump(feature, open(feature_path, 'wb'))
+	    pickle.dump(feature, open(feature_path_tmp, 'wb'))
+
 	    movefile(img_path, img_path.replace("static/processing-image", "static/img"))
+	    movefile(feature_path_tmp, feature_path)
 
 	time.sleep(5)
 

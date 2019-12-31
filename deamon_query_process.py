@@ -20,7 +20,7 @@ fe = FeatureExtractor()
 features = []
 img_paths = []
 def updateMemoryFeatures():
-    for feature_path in glob.glob("static/feature/*"):
+    for feature_path in glob.glob("static/feature/*.pkl"):
         img_path = 'static/img/' + os.path.splitext(os.path.basename(feature_path))[0] + '.jpg'
         if img_path not in img_paths:
             time.sleep(0.1)
