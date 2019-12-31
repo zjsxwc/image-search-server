@@ -13,7 +13,9 @@ func main() {
 
 	http.HandleFunc("/", index)
 	http.HandleFunc("/processing-image", processingImage)
+	http.HandleFunc("/processing-image-by-url", processingImageByUrl)
 	http.HandleFunc("/query-image", queryImage)
+	http.HandleFunc("/query-image-by-url", queryImageByUrl)
 
 	http.HandleFunc( "/static/",StaticServer)
 
@@ -74,6 +76,68 @@ func queryImage(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
+
+
+
+
+
+func queryImageByUrl(w http.ResponseWriter, r *http.Request) {
+	queryId := php2go.Uniqid(strconv.FormatInt(php2go.Time(), 10))
+
+	imageFileUrl := r.PostFormValue("imageFileUrl")
+	res, err := http.Get(imageFileUrl)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	savePathTmp := "static/askans/" + queryId + ".jpg.ask.tmp"
+	savePath := "static/askans/" + queryId + ".jpg.ask.jpg"
+	f, err := os.Create(savePathTmp)
+	if err != nil {
+		panic(err)
+	}
+	io.Copy(f, res.Body)
+	f.Close()
+	php2go.Rename(savePathTmp, savePath)
+
+	w.Header().Set("Content-Type", "application/json")
+	tryTimes := 0
+	for {
+		php2go.Sleep(1)
+		resultFilePath := "static/askans/" + queryId + ".jpg.ans.json"
+		if php2go.FileExists(resultFilePath) {
+			resultJson, err := php2go.FileGetContents(resultFilePath)
+			if err != nil {
+				fmt.Println(err)
+				w.Write([]byte(`"error"`))
+				return
+			}
+
+			w.Write([]byte(resultJson))
+
+			php2go.Sleep(1)
+			php2go.Unlink(savePath)
+			php2go.Unlink(resultFilePath)
+			return
+		}
+		tryTimes++
+		if tryTimes > 10 {
+			break
+		}
+	}
+	w.Write([]byte(`"error time out"`))
+	return
+}
+
+
+
+
+
+
+
+
+
+
 func processingImage(w http.ResponseWriter, r *http.Request) {
 	r.ParseMultipartForm(32 << 20)
 	metaId := r.FormValue("metaId")
@@ -95,6 +159,30 @@ func processingImage(w http.ResponseWriter, r *http.Request) {
 	php2go.Rename(savePathTmp, savePath)
 	fmt.Fprintln(w, "ok")
 }
+
+
+func processingImageByUrl(w http.ResponseWriter, r *http.Request) {
+	metaId := r.PostFormValue("metaId")
+	imageFileUrl := r.PostFormValue("imageFileUrl")
+	res, err := http.Get(imageFileUrl)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	savePathTmp := "static/processing-image/" + metaId + ".tmp"
+	savePath := "static/processing-image/" + metaId + ".jpg"
+	f, err := os.Create(savePathTmp)
+	if err != nil {
+		panic(err)
+	}
+	io.Copy(f, res.Body)
+	f.Close()
+
+	php2go.Rename(savePathTmp, savePath)
+	fmt.Fprintln(w, "ok")
+}
+
+
 
 func index(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(tpl))
