@@ -23,8 +23,12 @@ def updateMemoryFeatures():
     for feature_path in glob.glob("static/feature/*"):
         img_path = 'static/img/' + os.path.splitext(os.path.basename(feature_path))[0] + '.jpg'
         if img_path not in img_paths:
-            features.append(pickle.load(open(feature_path, 'rb')))
-            img_paths.append(img_path)
+            time.sleep(0.1)
+            try:
+                features.append(pickle.load(open(feature_path, 'rb')))
+                img_paths.append(img_path)
+            except:
+                pass
 
 
 updateMemoryFeatures()
