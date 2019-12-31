@@ -1,6 +1,6 @@
 sudo apt install python3
 sudo apt install python3-pip
-git clone https://github.com/matsui528/sis.git
+# git clone https://github.com/matsui528/sis.git
 cd sis
 # vim requirements.txt
 #     tensorflow==2.0.0b1
