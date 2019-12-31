@@ -6,6 +6,9 @@ static/*
 !static/uploaded
 !.gitkeep
 
+deamon_feature_extractor_process.log
+deamon_query_process.log
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
