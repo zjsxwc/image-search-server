@@ -243,13 +243,13 @@ const tpl = `<html>
 
         //上传成功响应
         function uploadComplete(evt) {
+            resultEle = document.getElementById("result");
+            resultEle.innerHTML = "";
             //服务断接收完文件返回的结果
             var data = JSON.parse(evt.target.responseText);
 			if (data) {
 				if (data instanceof Array) {
 			        console.log(data)
-                    resultEle = document.getElementById("result");
-                    resultEle.innerHTML = "";
 					data.forEach(function(item, index){
 						resultEle.innerHTML = resultEle.innerHTML + "<br>差异度："+ item[0] +" <img width=300 src='"+ item[1] +"'>"
 					});
