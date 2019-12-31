@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"github.com/syyongx/php2go"
 	"io"
@@ -11,6 +12,10 @@ import (
 
 func main() {
 
+	var port string
+	flag.StringVar(&port, "port", "5000", "端口号")
+	flag.Parse()
+
 	http.HandleFunc("/", index)
 	http.HandleFunc("/processing-image", processingImage)
 	http.HandleFunc("/processing-image-by-url", processingImageByUrl)
@@ -19,7 +24,7 @@ func main() {
 
 	http.HandleFunc( "/static/",StaticServer)
 
-	http.ListenAndServe(":5000", nil)
+	http.ListenAndServe(":"+port, nil)
 }
 
 func StaticServer(w http.ResponseWriter, r *http.Request) {
