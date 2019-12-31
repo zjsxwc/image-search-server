@@ -40,10 +40,18 @@ while True:
         ans_path = 'static/askans/' + os.path.splitext(os.path.splitext(os.path.basename(ask_path))[0])[0] + '.ans.json'
         if os.path.exists(ans_path): 
             continue
-        img = Image.open(ask_path)  # PIL image
-        query = fe.extract(img)
-        del img
-        dists = np.linalg.norm(features - query, axis=1)  # Do search
-        ids = np.argsort(dists)[:30] # Top 30 results
-        scores = [(str(dists[id]), img_paths[id]) for id in ids]
-        filePutContents(ans_path, json.dumps(scores))
+        try:
+            img = Image.open(ask_path)  # PIL image
+            query = fe.extract(img)
+            del img
+            dists = np.linalg.norm(features - query, axis=1)  # Do search
+            ids = np.argsort(dists)[:30] # Top 30 results
+
+            scores = [(str(dists[id]), img_paths[id], os.path.splitext(os.path.basename(img_paths[id]))[0]) for id in ids]
+            filePutContents(ans_path, json.dumps(scores))
+        except IOError:
+            print("Error: 没有找到文件或读取文件失败")
+        except FileNotFoundError:
+            print("Error: 没有找到文件或读取文件失败")
+        except:
+            print("Error: 没有找到文件或读取文件失败")
