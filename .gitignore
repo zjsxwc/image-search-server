@@ -93,3 +93,5 @@ ENV/
 
 # Rope project settings
 .ropeproject
+static/feature/*.pkl
+static/img/*.jpg
