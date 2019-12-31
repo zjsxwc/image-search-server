@@ -35,7 +35,8 @@ while True:
     currentTime = int(time.time())
     if ((currentTime - lastUpdateTime) > 60):
         updateMemoryFeatures()
-
+    if len(features) == 0:
+        continue
     for ask_path in glob.glob("static/askans/*.ask.jpg"):
         ans_path = 'static/askans/' + os.path.splitext(os.path.splitext(os.path.basename(ask_path))[0])[0] + '.ans.json'
         if os.path.exists(ans_path): 
@@ -49,12 +50,7 @@ while True:
 
             scores = [(str(dists[id]), img_paths[id], os.path.splitext(os.path.basename(img_paths[id]))[0]) for id in ids]
             filePutContents(ans_path, json.dumps(scores))
-        except IOError:
-            print("Error: 没有找到文件或读取文件失败1")
-        except FileNotFoundError:
-            print("Error: 没有找到文件或读取文件失败2")
-        except:
-            print("Error: 没有找到文件或读取文件失败3")
+        except BaseException as e:
+            print(e)
         else:
             pass
-
