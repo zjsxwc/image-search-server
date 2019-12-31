@@ -307,8 +307,5 @@ const tpl = `<html>
     </script>
 
 
-
-
-
 </body>
 </html>`
