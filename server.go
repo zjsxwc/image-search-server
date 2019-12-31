@@ -107,7 +107,7 @@ const tpl = `<html>
 <body>
 <form enctype="multipart/form-data" action="/processing-image" method="post" target="_blank">
  <input type="file" name="uploadfile" accept="image/jpeg" required />
- <input type="text" name="metaId" required οninput="value=value.replace(/[^\d]/g,'')" placeholder="唯一id" />
+ <input type="number" name="metaId" required οninput="value=value.replace(/[^\d]/g,'')" placeholder="唯一id" />
  <button type="submit">提交被搜索的图片进行特征提取</button>
 </form>
 
