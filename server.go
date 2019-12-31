@@ -183,7 +183,7 @@ const tpl = `<html>
 <body>
 <form enctype="multipart/form-data" action="/processing-image" method="post" target="_blank">
  <input type="file" name="uploadfile" accept="image/jpeg" required />
- <input type="number" name="metaId" required οninput="value=value.replace(/[^\d]/g,'')" placeholder="唯一id" />
+ <input id="metaId" type="number" name="metaId" required οninput="value=value.replace(/[^\d]/g,'')" placeholder="唯一id" />
  <button type="submit">提交被搜索的图片进行特征提取</button>
 </form>
 
@@ -199,7 +199,13 @@ const tpl = `<html>
 <p>结果</p><br>
 <div id="result"></div>
 
-	<script type="text/javascript">
+    <script type="text/javascript">
+		function randomNum(num1,num2){
+			return Math.random()*(num2-num1)+num1  
+		}
+        metaIdEle = document.getElementById("metaId");
+        metaIdEle.value = randomNum(100000,9999999);
+
         //图片上传
         var xhr;
         //上传文件方法
