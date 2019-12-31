@@ -22,13 +22,13 @@ func main() {
 	http.HandleFunc("/query-image", queryImage)
 	http.HandleFunc("/query-image-by-url", queryImageByUrl)
 
-	http.HandleFunc( "/static/",StaticServer)
+	http.HandleFunc("/static/", StaticServer)
 
 	http.ListenAndServe(":"+port, nil)
 }
 
 func StaticServer(w http.ResponseWriter, r *http.Request) {
-	staticHandler :=  http.StripPrefix("/static/", http.FileServer(http.Dir("./static/")))
+	staticHandler := http.StripPrefix("/static/", http.FileServer(http.Dir("./static/")))
 	staticHandler.ServeHTTP(w, r)
 	return
 }
@@ -81,11 +81,6 @@ func queryImage(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
-
-
-
-
-
 func queryImageByUrl(w http.ResponseWriter, r *http.Request) {
 	queryId := php2go.Uniqid(strconv.FormatInt(php2go.Time(), 10))
 
@@ -134,15 +129,6 @@ func queryImageByUrl(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
-
-
-
-
-
-
-
-
-
 func processingImage(w http.ResponseWriter, r *http.Request) {
 	r.ParseMultipartForm(32 << 20)
 	metaId := r.FormValue("metaId")
@@ -165,7 +151,6 @@ func processingImage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "ok")
 }
 
-
 func processingImageByUrl(w http.ResponseWriter, r *http.Request) {
 	metaId := r.PostFormValue("metaId")
 	imageFileUrl := r.PostFormValue("imageFileUrl")
@@ -186,8 +171,6 @@ func processingImageByUrl(w http.ResponseWriter, r *http.Request) {
 	php2go.Rename(savePathTmp, savePath)
 	fmt.Fprintln(w, "ok")
 }
-
-
 
 func index(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(tpl))
