@@ -50,8 +50,11 @@ while True:
             scores = [(str(dists[id]), img_paths[id], os.path.splitext(os.path.basename(img_paths[id]))[0]) for id in ids]
             filePutContents(ans_path, json.dumps(scores))
         except IOError:
-            print("Error: 没有找到文件或读取文件失败")
+            print("Error: 没有找到文件或读取文件失败1")
         except FileNotFoundError:
-            print("Error: 没有找到文件或读取文件失败")
+            print("Error: 没有找到文件或读取文件失败2")
         except:
-            print("Error: 没有找到文件或读取文件失败")
+            print("Error: 没有找到文件或读取文件失败3")
+        else:
+            pass
+

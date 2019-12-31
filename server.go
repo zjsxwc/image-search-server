@@ -35,7 +35,7 @@ func queryImage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer file.Close()
-	savePathTmp := "static/askans/" + queryId + ".jpg.ask.jpg.tmp"
+	savePathTmp := "static/askans/" + queryId + ".jpg.ask.tmp"
 	savePath := "static/askans/" + queryId + ".jpg.ask.jpg"
 	f, err := os.OpenFile(savePathTmp, os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
@@ -83,7 +83,7 @@ func processingImage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer file.Close()
-	savePathTmp := "static/processing-image/" + metaId + ".jpg.tmp"
+	savePathTmp := "static/processing-image/" + metaId + ".tmp"
 	savePath := "static/processing-image/" + metaId + ".jpg"
 	f, err := os.OpenFile(savePathTmp, os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
