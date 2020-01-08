@@ -55,7 +55,8 @@ while True:
             scores = [(str(dists[id]), img_paths[id], os.path.splitext(os.path.basename(img_paths[id]))[0]) for id in ids]
             filePutContents(ans_path, json.dumps(scores))
         except BaseException as e:
-            os.remove(ask_path)
+            if os.path.exists(ask_path):
+                os.remove(ask_path)
             print(e)
         else:
             pass
