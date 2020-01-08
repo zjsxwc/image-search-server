@@ -38,6 +38,7 @@ while True:
     currentTime = int(time.time())
     if ((currentTime - lastUpdateTime) > 60):
         updateMemoryFeatures()
+        lastUpdateTime = int(time.time())
     if len(features) == 0:
         continue
     for ask_path in glob.glob("static/askans/*.ask.jpg"):
