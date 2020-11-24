@@ -24,7 +24,7 @@ $ # git clone https://github.com/matsui528/sis.git
 $ git clone this-project
 $ cd this-project
 $ pip install -r requirements.txt
-
+```
 ```bash
 wangchao@debianimgsearcher:~$ pwd
 /home/wangchao
@@ -35,7 +35,7 @@ vgg16_weights_tf_dim_ordering_tf_kernels.h5
 #链接: https://pan.baidu.com/s/1h60lBixXtSLOmNOYYjbFlw 提取码: ii6t 复制这段内容后打开百度网盘手机App，操作更方便哦
 #and paste it on  ~/.keras/models
 ```
-
+```bash
 # Put your image files (*.jpg) on static/processing-image
 
 $ #python offline.py
