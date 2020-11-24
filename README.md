@@ -20,19 +20,34 @@
 ## Usage
 ```bash
 # Clone the code and install libraries
-$ git clone https://github.com/matsui528/sis.git
-$ cd sis
+$ # git clone https://github.com/matsui528/sis.git
+$ git clone this-project
+$ cd this-project
 $ pip install -r requirements.txt
+
+```bash
+wangchao@debianimgsearcher:~$ pwd
+/home/wangchao
+wangchao@debianimgsearcher:~$ ls .keras/models/
+vgg16_weights_tf_dim_ordering_tf_kernels.h5
+
+#You can download it manually from here: https://github.com/fchollet/deep-learning-models/releases/download/v0.1/vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5      and paste it on  ~/.keras/models
+```
 
 # Put your image files (*.jpg) on static/img
 
-$ python offline.py
+$ #python offline.py
+$ ./startDeamon.sh
 # Then fc6 features are extracted and saved on static/feature
 # Note that it takes time for the first time because Keras downloads the VGG weights.
 
-$ python server.py
+$ #python server.py
+$ ./runserver.sh
 # Now you can do the search via localhost:5000
 ```
+
+
+
 ## Launch on AWS EC2
 - You can easily launch Sis on AWS EC2 as follows. Note that the following configuration is just for the demo purpose, which would not be secure.
 - To run the server on AWS, please first open the port 5000 and launch an EC2 instance. Note that you can create a security group such that port 5000 is opened.
