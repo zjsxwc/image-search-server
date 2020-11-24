@@ -2,7 +2,7 @@
 
 
 
-$url = 'http://192.168.137.100:5000/processing-image-by-url';  //调用接口的平台服务地址
+$url = 'http://0.0.0.0:5000/processing-image-by-url';  //调用接口的平台服务地址
 
 $post_data = "imageFileUrl=https://pic4.zhimg.com/50/v2-76a08e1141cb62451ea89d32ab84ebab_hd.jpg&metaId=12345678" . time();
 
@@ -43,7 +43,7 @@ var_dump($result);
 
 
 
-$url = 'http://192.168.137.100:5000/query-image-by-url';  //调用接口的平台服务地址
+$url = 'http://0.0.0.0:5000/query-image-by-url';  //调用接口的平台服务地址
 
 $post_data = "imageFileUrl=https://pic4.zhimg.com/50/v2-76a08e1141cb62451ea89d32ab84ebab_hd.jpg";
 
