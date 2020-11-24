@@ -36,7 +36,7 @@ vgg16_weights_tf_dim_ordering_tf_kernels.h5
 #and paste it on  ~/.keras/models
 ```
 
-# Put your image files (*.jpg) on static/img
+# Put your image files (*.jpg) on static/processing-image
 
 $ #python offline.py
 $ ./startDeamon.sh
