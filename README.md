@@ -31,7 +31,9 @@ wangchao@debianimgsearcher:~$ pwd
 wangchao@debianimgsearcher:~$ ls .keras/models/
 vgg16_weights_tf_dim_ordering_tf_kernels.h5
 
-#You can download it manually from here: https://github.com/fchollet/deep-learning-models/releases/download/v0.1/vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5      and paste it on  ~/.keras/models
+#You can download it manually from here: 
+#链接: https://pan.baidu.com/s/1h60lBixXtSLOmNOYYjbFlw 提取码: ii6t 复制这段内容后打开百度网盘手机App，操作更方便哦
+#and paste it on  ~/.keras/models
 ```
 
 # Put your image files (*.jpg) on static/img
